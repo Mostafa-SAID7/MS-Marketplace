@@ -179,8 +179,6 @@
   background-size: 56px 56px;
 }
 
-@media (pointer: fine) {
-  @utility hide-cursor {
-    cursor: none;
-  }
+@utility hide-cursor {
+  cursor: none;
 }
