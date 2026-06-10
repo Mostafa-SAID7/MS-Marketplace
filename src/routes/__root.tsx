@@ -92,6 +92,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Marketplace Systems Architect" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Marketplace Systems Architect & Full-Stack Engineer" },
+      { name: "twitter:title", content: "Marketplace Systems Architect & Full-Stack Engineer" },
+      { name: "description", content: "A premium, modern developer portfolio showcasing expertise in full-stack marketplace architecture and development." },
+      { property: "og:description", content: "A premium, modern developer portfolio showcasing expertise in full-stack marketplace architecture and development." },
+      { name: "twitter:description", content: "A premium, modern developer portfolio showcasing expertise in full-stack marketplace architecture and development." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
