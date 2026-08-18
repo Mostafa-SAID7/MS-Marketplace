@@ -12,8 +12,8 @@ export function Hero() {
 
   const downloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/cv/Mostafa_Samir_CV.pdf";
-    link.download = "Mostafa_Samir_CV.pdf";
+    link.href = "/cv/Mostafa_Samir_CV.md";
+    link.download = "Mostafa_Samir_CV.md";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -67,23 +67,23 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="pointer-events-auto mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="group pointer-events-auto inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-semibold text-gold-foreground transition-transform hover:scale-[1.03] glow-gold cursor-pointer"
+            className="group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-semibold text-gold-foreground transition-transform hover:scale-[1.03] glow-gold cursor-pointer"
           >
             <MessageCircle className="size-4 transition-transform group-hover:translate-x-1" />
-            Work with Me
+            {tr("hero.workWithMe")}
           </a>
           <button
             onClick={downloadCV}
-            className="group pointer-events-auto inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 font-semibold text-gold transition-all hover:bg-gold/10 hover:scale-[1.03] cursor-pointer"
+            className="group inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 font-semibold text-gold transition-all hover:bg-gold/10 hover:scale-[1.03] cursor-pointer"
           >
             <Download className="size-4 transition-transform group-hover:-translate-y-0.5" />
-            Download CV
+            {tr("hero.downloadCv")}
           </button>
         </motion.div>
       </div>

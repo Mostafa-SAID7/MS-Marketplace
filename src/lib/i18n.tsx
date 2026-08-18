@@ -33,6 +33,8 @@ export const t: Dict = {
   },
   "hero.cta1": { en: "View My Work", ar: "استعرض أعمالي" },
   "hero.cta2": { en: "Get in Touch", ar: "تواصل معي" },
+  "hero.workWithMe": { en: "Work with Me", ar: "اعمل معي" },
+  "hero.downloadCv": { en: "Download CV", ar: "تحميل السيرة الذاتية" },
 
   "about.title": { en: "About Me", ar: "نبذة عني" },
   "about.kicker": { en: "Senior Full Stack Engineer", ar: "مهندس متكامل أول" },
@@ -40,6 +42,7 @@ export const t: Dict = {
     en: "With 4+ years of experience specializing in high-performance Microservices and modern Web Architectures, I've built scalable marketplace-ready solutions using .NET 8, ASP.NET Core Web API, and modern frontend frameworks. I excel at optimizing system performance, architecting complex enterprise platforms, and leading technical initiatives that drive business value.",
     ar: "بخبرة أكثر من 4 سنوات في الخدمات الصغيرة عالية الأداء والعمائر الويب الحديثة، بنيت حلولاً قابلة للتوسع باستخدام .NET 8 و ASP.NET Core. أتفوق في تحسين أداء الأنظمة وتصميم المنصات المعقدة.",
   },
+  "about.cta": { en: "Get in Touch", ar: "تواصل معي" },
   "skills.title": { en: "Skills & Expertise", ar: "المهارات والخبرات" },
   "projects.title": { en: "Featured Projects", ar: "مشاريع مختارة" },
   "experience.title": { en: "Experience", ar: "الخبرات" },

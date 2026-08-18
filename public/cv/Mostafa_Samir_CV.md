@@ -1,6 +1,6 @@
 # **MOSTAFA SAMIR**
 
-Tanta, Egypt | +20 106 735 8073 | m.ssaid356@gmail.com linkedin.com/in/mostafasamirsaid | github.com/Mostafa-SAID7
+Tanta, Egypt | +20 106 735 8073 | [Email](mailto:m.ssaid356@gmail.com) | [LinkedIn](https://linkedin.com/in/mostafasamirsaid) | [GitHub](https://github.com/Mostafa-SAID7)
 
 ---
 
@@ -16,13 +16,13 @@ Senior Full Stack Engineer with 4+ years of experience specializing in high-perf
 
 **TECHNICAL CORE COMPETENCIES**
 
-**Backend:**
+**Backend:** .NET 8/Core, C#, ASP.NET Web API, Microservices, Clean Architecture, SignalR, gRPC, DDD, Entity Framework, LINQ.
 
-.NET 8/Core, C#, ASP.NET Web API, Microservices, Clean Architecture, SignalR, gRPC, DDD, Entity
+**Frontend:** Angular, React.js, Next.js, Redux, TypeScript, Tailwind CSS, Responsive Web Design.
 
-Framework, LINQ.
+**Databases:** SQL Server (Advanced Tuning), PostgreSQL, Redis, MongoDB, SSRS.
 
-**Frontend:** Angular, React.js, Next.js, Redux, TypeScript, Tailwind CSS, Responsive Web Design. **Databases:** SQL Server (Advanced Tuning), PostgreSQL, Redis, MongoDB, SSRS. **DevOps & CI/CD:**Azure DevOps, Docker, Kubernetes, TFS, Git, CI/CD Pipelines.
+**DevOps & CI/CD:** Azure DevOps, Docker, Kubernetes, TFS, Git, CI/CD Pipelines.
 
 **Security & QA:** OAuth 2.0, JWT, RBAC, TDD, Playwright, Cypress.
 
@@ -45,8 +45,7 @@ Led the transition to multi-tenant architectures, ensuring secure data isolation
 access control (RBAC).
 
 Engineered high-throughput integration layers and real-time telemetry backends using SignalR, managing
-
-over 1000+ IoT endpoints.
+over 1,000 IoT endpoints.
 
 Automated CI/CD pipelines using Azure DevOps and TFS, significantly reducing deployment cycles and
 
@@ -73,15 +72,15 @@ Containerized legacy services using Docker to streamline development environment
 
 **SELECTED PROJECTS**
 
-**E-Commerce Marketplace Engine:**Built a modular marketplace backend using .NET 8 Microservices, implementing a Repository Pattern and Unit of Work for high maintainability.
+**E-Commerce Marketplace Engine:** Built a modular marketplace backend using .NET 8 Microservices, implementing a Repository Pattern and Unit of Work for high maintainability.
 
-**Real-Time Logistics & IoT Dashboard:**Developed a full-stack dashboard (Angular & .NET) featuring real-time
+**Real-Time Logistics & IoT Dashboard:** Developed a full-stack dashboard (Angular & .NET) featuring real-time
 
 data visualization via SignalR for logistics tracking.
 
-**Multi-Tenant CRM/ERP Sync:**Engineered a synchronization layer for CRM and ERP systems, handling largescale data transfers with high consistency.
+**Multi-Tenant CRM/ERP Sync:** Engineered a synchronization layer for CRM and ERP systems, handling large-scale data transfers with high consistency.
 
-**Next.js Portfolio & PWA:**Developed a high-performance personal portfolio using Next.js and Tailwind CSS,
+**Next.js Portfolio & PWA:** Developed a high-performance personal portfolio using Next.js and Tailwind CSS,
 
 showcasing optimized web vitals and mobile responsiveness.
 
@@ -98,4 +97,8 @@ showcasing optimized web vitals and mobile responsiveness.
 
 **2021**
 
-Higher Technological Institute (HTI), Egypt **Certifications:**Microsoft Certified: Azure Fundamentals (AZ-900) **Languages:**English (Professional Fluency), Arabic (Native)
+Higher Technological Institute (HTI), Egypt
+
+**Certifications:** Microsoft Certified: Azure Fundamentals (AZ-900)
+
+**Languages:** English (Professional Fluency), Arabic (Native)

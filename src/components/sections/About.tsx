@@ -48,7 +48,7 @@ export function About() {
               }}
               className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 font-semibold text-gold transition-all hover:bg-gold/10 hover:scale-[1.03]"
             >
-              Get in Touch
+              {tr("about.cta")}
             </a>
           </div>
         </Reveal>
