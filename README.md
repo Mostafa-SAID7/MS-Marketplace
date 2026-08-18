@@ -1,181 +1,70 @@
-# Market Maestro Folio
+# 🎯 MS-Marketplace
 
-A modern, responsive portfolio/dashboard application for trading and market analytics. Built with React, TypeScript, Tailwind CSS, and TanStack Router.
+> A modern portfolio showcasing real-world projects across web development, e-commerce, and emerging technologies.
 
-## Features
+## ✨ Portfolio Highlights
 
-- 🎨 Modern, responsive design with dark/light theme support
-- 📊 Interactive charts and data visualization with Recharts
-- 🚀 Fast performance with Vite bundler
-- 🎯 Type-safe with TypeScript
-- 🌈 Beautiful UI components with Radix UI and Tailwind CSS
-- 📱 Mobile-friendly responsive layout
-- ♿ Accessible components (WCAG compliant)
-- 🔄 Client-side routing with TanStack Router
-- 📡 State management with TanStack Query
-- 🎭 Smooth animations with Framer Motion
-- 🛒 E-commerce-ready with modern hooks
+**15 Professional Projects** | **3 Frameworks** | **Web3 Ready** | **Microservices Architecture**
 
-## Tech Stack
+- **11 React Projects** — E-commerce platforms, dashboards, landing pages
+- **2 Angular Projects** — Modern web applications with Web3 integration
+- **2 Microservices** — Advanced backend architecture with GitHub repos
 
-- **Frontend Framework**: React 19
-- **Language**: TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS 4
-- **UI Components**: Radix UI
-- **Routing**: TanStack Router
-- **State Management**: TanStack Query
-- **Forms**: React Hook Form
-- **Animations**: Framer Motion
-- **Charts**: Recharts
-- **Icons**: Lucide React
+## 🚀 Tech Stack
 
-## Getting Started
+React • Angular • TypeScript • Tailwind CSS • Vite • Node.js • Web3 • Microservices
 
-### Prerequisites
-
-- Node.js 18+ or Bun
-- npm or yarn
-
-### Installation
+## 🛠️ Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/Mostafa-SAID7/MS-Marketplace.git
-cd market-maestro-folio
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`
+Visit `http://localhost:5173`
 
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Preview Production Build
+## 📦 Build & Deploy
 
 ```bash
-npm run preview
+npm run build      # Production build
+npm run preview    # Preview build
+npm run lint       # Code quality check
 ```
 
-### Code Quality
-
-```bash
-# Lint code
-npm run lint
-
-# Format code
-npm run format
-```
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
-├── components/       # Reusable React components
-├── hooks/           # Custom React hooks
-├── lib/             # Utility functions and helpers
-├── routes/          # Page components and route definitions
-├── router.tsx       # Router configuration
-├── routeTree.gen.ts # Auto-generated route tree
-├── main.tsx         # Application entry point
-└── styles.css       # Global styles and Tailwind config
+├── data/              # Portfolio data (projects, skills, experience)
+├── components/        # Reusable UI components
+├── routes/           # Page components
+├── lib/              # Utilities & helpers
+└── styles.css        # Global styles
 
-public/
-├── favicon.svg      # Application favicon
-
-docs/               # Documentation files
-├── INSTALLATION.md  # Installation guide
-├── DEPLOYMENT.md    # Deployment guide
-├── ARCHITECTURE.md  # Architecture documentation
-└── CONTRIBUTING.md  # Contributing guidelines
+public/projects/      # Project images (react, angular, microservices)
 ```
 
-## Deployment
+## 🎨 Features
 
-### Netlify
+- ✅ Responsive design with dark/light theme
+- ✅ Smooth animations & transitions
+- ✅ Interactive project showcase
+- ✅ Enhanced timeline section
+- ✅ Mobile-optimized interface
+- ✅ Type-safe TypeScript codebase
+- ✅ Performance-optimized with Vite
 
-The application is configured for Netlify deployment with SPA routing support.
+## 📊 Portfolio Projects
 
-1. Connect your GitHub repository to Netlify
-2. Configure build settings:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-3. Deploy
+**By Category**: Clothing (5) • Beauty (3) • Dashboard (2) • Web3 (2) • Jewelry (1) • Furniture (1) • Tech Accessories (1) • Sports (1)
 
-The `netlify.toml` file includes automatic SPA routing configuration.
+All projects are **live, deployed, and include working URLs + project screenshots**.
 
-### Environment Variables
+## 🔗 Links
 
-Create a `.env` file in the root directory for environment-specific variables:
+- [Live Demo](#) — Coming soon
+- [GitHub](https://github.com/Mostafa-SAID7/MS-Marketplace)
 
-```env
-VITE_API_URL=https://your-api-endpoint.com
-```
+## 📄 License
 
-## Browser Support
-
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers
-
-## Performance
-
-- Optimized bundle size (~615KB gzipped)
-- Code splitting for routes
-- Lazy loading components
-- Image optimization
-- CSS minification
-
-## Styling
-
-The application uses:
-- **Tailwind CSS v4** for utility-first styling
-- **Custom CSS variables** for theming
-- **Dark/Light mode support** via CSS custom properties
-- **Responsive design** with mobile-first approach
-- **Custom scrollbar styling** for better UX
-
-### Theme
-
-Colors are defined as CSS custom properties in `src/styles.css`:
-- Primary: Gold accent color
-- Background: Dark blue gradient
-- Foreground: Light text color
-- And more customizable properties
-
-## Contributing
-
-See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines on how to contribute to this project.
-
-## Documentation
-
-See the [docs](./docs) folder for:
-- [Installation Guide](docs/INSTALLATION.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Deployment Guide](docs/DEPLOYMENT.md)
-- [Contributing Guidelines](docs/CONTRIBUTING.md)
-
-## License
-
-MIT License - see LICENSE file for details
-
-## Author
-
-Market Maestro - Modern Trading & Analytics Platform
-
-## Support
-
-For support, please open an issue on GitHub.
-
----
-
-**Built with ❤️ using modern web technologies**
+MIT

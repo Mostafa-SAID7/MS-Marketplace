@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects, projectFilters, type Project } from "@/data";
@@ -138,41 +139,33 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function Projects() {
   const { tr } = useI18n();
-  const [filter, setFilter] = useState<(typeof projectFilters)[number]>("All");
 
-  const filtered =
-    filter === "All"
-      ? projects
-      : projects.filter((p) => p.category === filter);
+  // Show only last 3 projects on home page
+  const latestProjects = projects.slice(-3).reverse();
 
   return (
     <section id="projects" className="scroll-mt-24 py-28">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading title={tr("projects.title")} />
 
-        <Reveal className="mb-12 flex flex-wrap justify-center gap-2.5">
-          {projectFilters.map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
-                filter === f
-                  ? "bg-gold text-gold-foreground"
-                  : "border border-border bg-secondary/40 text-muted-foreground hover:border-gold/50 hover:text-gold"
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </Reveal>
-
-        <motion.div layout className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-12">
           <AnimatePresence mode="popLayout">
-            {filtered.map((p) => (
+            {latestProjects.map((p, idx) => (
               <ProjectCard key={p.title} project={p} />
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* View All Button */}
+        <Reveal className="flex justify-center">
+          <Link
+            to="/projects"
+            className="group flex items-center gap-2.5 rounded-lg bg-gold/10 px-8 py-3.5 font-semibold text-gold border border-gold/30 transition-all hover:bg-gold/20 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/20"
+          >
+            View All Projects
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );
