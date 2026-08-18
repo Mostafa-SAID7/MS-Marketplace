@@ -6,25 +6,38 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   {
     title: "Frontend",
-    skills: ["React", "Next.js", "Angular", "TypeScript", "Tailwind CSS", "Framer Motion", "React Native", "RxJS", "Bootstrap"],
+    skills: ["React", "Next.js", "Angular", "TypeScript", "Tailwind CSS", "Redux", "Responsive Web Design", "React Native", "RxJS", "Bootstrap"],
   },
   {
     title: "Backend",
-    skills: ["Node.js", "C#", "ASP.NET Core", "GraphQL", "PostgreSQL", "MongoDB", "SQL Server", "Redis", "Kafka"],
+    skills: [".NET 8", "ASP.NET Core", "C#", "ASP.NET Web API", "Microservices", "Node.js", "GraphQL", "LINQ", "Entity Framework"],
   },
   {
-    title: "Marketplace Systems",
+    title: "Databases",
+    skills: ["SQL Server (Advanced Tuning)", "PostgreSQL", "MongoDB", "Redis", "SSRS"],
+  },
+  {
+    title: "Architecture & Patterns",
     skills: [
-      "Stripe Connect",
-      "Payment Splits",
-      "Search & Ranking",
-      "Fraud Detection",
-      "Real-time Bidding",
-      "Geo Dispatch",
+      "Clean Architecture",
+      "Domain-Driven Design (DDD)",
+      "Repository Pattern",
+      "Unit of Work",
+      "Event-Driven Architecture",
+      "Multi-Tenant Architecture",
+      "RBAC",
     ],
   },
   {
-    title: "DevOps & Scale",
-    skills: ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD", "Observability"],
+    title: "Real-Time & Communication",
+    skills: ["SignalR", "gRPC", "WebSocket", "Kafka"],
+  },
+  {
+    title: "DevOps & CI/CD",
+    skills: ["Azure DevOps", "Docker", "Kubernetes", "TFS", "Git", "CI/CD Pipelines", "Terraform"],
+  },
+  {
+    title: "Security & Testing",
+    skills: ["OAuth 2.0", "JWT", "TDD", "Playwright", "Cypress"],
   },
 ];

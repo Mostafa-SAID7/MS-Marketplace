@@ -1,4 +1,4 @@
-export type ProjectCategory = "Clothing" | "Beauty" | "Jewelry" | "Furniture" | "Dashboard" | "We3ds" | "Sports" | "Tech Accessories" | "Backend";
+export type ProjectCategory = "Clothing" | "Beauty" | "Jewelry" | "Furniture" | "Dashboard" | "Web3" | "Sports" | "Tech Accessories" | "Backend";
 
 export interface Project {
   id: string;
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     id: "shop-microservices",
     title: "Shop Microservices",
     description: "Advanced e-commerce microservices architecture with Web3 integration and scalable backend infrastructure.",
-    category: "We3ds",
+    category: "Web3",
     type: "Team",
     tech: ["Microservices", "Web3"],
     github: "https://github.com/Mostafa-SAID7/Shop-Microservices",
@@ -232,6 +232,7 @@ export const projects: Project[] = [
     tech: ["ASP.NET MVC", "SQL Server", "C#"],
     database: "SQL Server",
     status: "Completed",
+    live: "#",
     image: "/api/Marketing-Mvc.jpg",
     gradient: "linear-gradient(135deg, oklch(0.58 0.18 300), oklch(0.5 0.15 270))",
   },
@@ -244,7 +245,7 @@ export const projectFilters: (ProjectCategory | "All")[] = [
   "Jewelry",
   "Furniture",
   "Dashboard",
-  "We3ds",
+  "Web3",
   "Sports",
   "Tech Accessories",
   "Backend",

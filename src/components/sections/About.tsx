@@ -11,6 +11,7 @@ const stats = [
 
 export function About() {
   const { tr } = useI18n();
+
   return (
     <section id="about" className="scroll-mt-24 py-28">
       <div className="mx-auto max-w-5xl px-5">
@@ -35,6 +36,22 @@ export function About() {
             </Reveal>
           ))}
         </div>
+
+        {/* Get in Touch Button */}
+        <Reveal delay={0.4}>
+          <div className="mt-12 flex justify-center">
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 font-semibold text-gold transition-all hover:bg-gold/10 hover:scale-[1.03]"
+            >
+              Get in Touch
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const mouseState = useRef({ x: 0, y: 0, isInteractive: false });
   const ringState = useRef({ x: 0, y: 0 });
 
@@ -11,12 +11,17 @@ export function CustomCursor() {
     const fine = window.matchMedia("(pointer: fine)").matches;
     if (!fine) return;
 
-    setEnabled(true);
     document.documentElement.classList.add("hide-cursor");
 
     let raf = 0;
+    let hasMovedOnce = false;
 
     const onMove = (e: MouseEvent) => {
+      if (!hasMovedOnce) {
+        hasMovedOnce = true;
+        setIsVisible(true);
+      }
+
       mouseState.current.x = e.clientX;
       mouseState.current.y = e.clientY;
 
@@ -31,11 +36,15 @@ export function CustomCursor() {
         "a, button, input, textarea, select, [role='button'], [data-cursor]"
       );
       mouseState.current.isInteractive = !!interactive;
-      ringRef.current?.classList.toggle("scale-[1.8]", !!interactive);
     };
 
     // Smooth ring animation loop (only updates ring, not dot)
     const loop = () => {
+      if (!isVisible) {
+        raf = requestAnimationFrame(loop);
+        return;
+      }
+
       const { x: mouseX, y: mouseY } = mouseState.current;
       const { x: ringX, y: ringY } = ringState.current;
 
@@ -45,7 +54,8 @@ export function CustomCursor() {
       ringState.current.y = ringY + (mouseY - ringY) * easing;
 
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${ringState.current.x}px, ${ringState.current.y}px)`;
+        const scale = mouseState.current.isInteractive ? 1.8 : 1;
+        ringRef.current.style.transform = `translate(${ringState.current.x}px, ${ringState.current.y}px) scale(${scale})`;
       }
 
       raf = requestAnimationFrame(loop);
@@ -59,9 +69,9 @@ export function CustomCursor() {
       cancelAnimationFrame(raf);
       document.documentElement.classList.remove("hide-cursor");
     };
-  }, []);
+  }, [isVisible]);
 
-  if (!enabled) return null;
+  if (!isVisible) return null;
 
   return (
     <>

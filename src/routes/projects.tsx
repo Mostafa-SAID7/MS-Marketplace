@@ -85,8 +85,12 @@ export function ProjectsPage() {
             {/* Search Input */}
             <Reveal className="mb-8">
               <div className="relative">
+                <label htmlFor="project-search" className="sr-only">
+                  Search projects
+                </label>
                 <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
                 <input
+                  id="project-search"
                   type="text"
                   placeholder="Search projects by name, description, or technology..."
                   value={searchQuery}
@@ -102,6 +106,7 @@ export function ProjectsPage() {
                 <button
                   key={f}
                   onClick={() => handleFilterChange(f)}
+                  aria-pressed={filter === f}
                   className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
                     filter === f
                       ? "bg-gold text-gold-foreground"

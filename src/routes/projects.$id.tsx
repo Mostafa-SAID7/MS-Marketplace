@@ -48,6 +48,7 @@ export function ProjectDetail() {
     );
   }
 
+  const hasLiveSite = project.live !== "#";
   const projectIndex = projects.findIndex((p) => p.id === id);
   const nextProject = projects[projectIndex + 1];
   const prevProject = projectIndex > 0 ? projects[projectIndex - 1] : null;
@@ -126,14 +127,14 @@ export function ProjectDetail() {
                     </div>
                   </div>
                   <div className="text-lg font-semibold">
-                    {project.live ? "Live" : "Archived"}
+                    {hasLiveSite ? "Live" : "Archived"}
                   </div>
                 </div>
               </div>
 
               {/* Links */}
               <div className="mb-12 flex flex-wrap gap-4">
-                {project.live && (
+                {hasLiveSite && (
                   <a
                     href={project.live}
                     target="_blank"

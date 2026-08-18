@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LangToggle } from "@/components/ui/LangToggle";
 
 const links = [
-  { id: "about", key: "nav.about", path: "/#about" },
-  { id: "skills", key: "nav.skills", path: "/#skills" },
-  { id: "projects", key: "nav.projects", path: "/projects" },
-  { id: "experience", key: "nav.experience", path: "/#experience" },
-  { id: "contact", key: "nav.contact", path: "/#contact" },
+  { id: "about", key: "nav.about", to: "/", hash: "about" },
+  { id: "skills", key: "nav.skills", to: "/", hash: "skills" },
+  { id: "projects", key: "nav.projects", to: "/projects" },
+  { id: "experience", key: "nav.experience", to: "/", hash: "experience" },
+  { id: "contact", key: "nav.contact", to: "/", hash: "contact" },
 ];
 
 export function Navbar() {
   const { tr } = useI18n();
-  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -27,21 +26,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
+  const handleNavClick = () => {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleNavClick = (path: string) => {
-    setOpen(false);
-    
-    // If path starts with /, it's a route, otherwise it's a scroll target
-    if (path.startsWith("/#")) {
-      // Hash link - scroll on current page
-      const id = path.split("#")[1];
-      scrollTo(id);
-    }
-    // Otherwise, TanStack Router Link will handle the navigation
   };
 
   return (
@@ -63,8 +49,10 @@ export function Navbar() {
           {links.map((l) => (
             <Link
               key={l.id}
-              to={l.path}
-              onClick={() => handleNavClick(l.path)}
+              to={l.to}
+              hash={l.hash}
+              hashScrollIntoView={l.hash ? { behavior: "smooth" } : undefined}
+              onClick={handleNavClick}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-gold"
             >
               {tr(l.key)}
@@ -97,8 +85,10 @@ export function Navbar() {
               {links.map((l) => (
                 <Link
                   key={l.id}
-                  to={l.path}
-                  onClick={() => handleNavClick(l.path)}
+                  to={l.to}
+                  hash={l.hash}
+                  hashScrollIntoView={l.hash ? { behavior: "smooth" } : undefined}
+                  onClick={handleNavClick}
                   className="rounded-lg px-3 py-3 text-start text-base font-medium text-foreground transition-colors hover:bg-secondary hover:text-gold"
                 >
                   {tr(l.key)}

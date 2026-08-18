@@ -141,19 +141,19 @@ export function Experience() {
           viewport={{ once: true }}
         >
           {[
-            { label: "Years", value: "9+" },
-            { label: "Companies", value: "3" },
-            { label: "Team Scale", value: "58K+" },
+            { labelKey: "experience.stats.years", value: "4+" },
+            { labelKey: "experience.stats.companies", value: "2" },
+            { labelKey: "experience.stats.teamScale", value: "1000+" },
           ].map((stat) => (
             <div
-              key={stat.label}
+              key={stat.labelKey}
               className="glass rounded-xl bg-gradient-to-br from-card/40 to-card/20 px-4 py-6 text-center md:px-6 md:py-8 border border-gold/10"
             >
               <p className="text-2xl font-bold text-gold md:text-3xl">
                 {stat.value}
               </p>
               <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground md:text-sm">
-                {stat.label}
+                {tr(stat.labelKey)}
               </p>
             </div>
           ))}
