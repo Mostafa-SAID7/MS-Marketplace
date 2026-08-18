@@ -40,49 +40,7 @@
   --font-arabic: "Tajawal", system-ui, sans-serif;
 }
 
-@import "tailwindcss";
-@source "../src";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-gold: var(--gold);
-  --color-gold-foreground: var(--gold-foreground);
-  --color-gold-muted: var(--gold-muted);
-
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-arabic: "Tajawal", system-ui, sans-serif;
-}
-
-/* Utility definitions must be at root level */
+/* Utility definitions */
 @utility glass {
   background: color-mix(in oklab, var(--card) 60%, transparent);
   backdrop-filter: blur(16px);
@@ -188,6 +146,9 @@
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--color-primary) var(--color-background);
+    /* Cursor animation performance optimization */
+    --cursor-x: 0px;
+    --cursor-y: 0px;
   }
 
   /* Webkit browsers (Chrome, Safari, Edge) */
@@ -224,45 +185,4 @@
     background-color: var(--gold);
     color: var(--gold-foreground);
   }
-}
-
-@utility glass {
-  background: color-mix(in oklab, var(--card) 60%, transparent);
-  backdrop-filter: blur(16px);
-  border: 1px solid color-mix(in oklab, var(--gold) 14%, var(--border));
-}
-
-@utility glow-gold {
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--gold) 20%, transparent),
-    0 18px 60px -20px color-mix(in oklab, var(--gold) 45%, transparent);
-}
-
-@utility text-gradient-gold {
-  background: linear-gradient(
-    100deg,
-    var(--gold) 0%,
-    color-mix(in oklab, var(--gold) 70%, white) 45%,
-    var(--gold) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-@utility grid-bg {
-  background-image: linear-gradient(
-      to right,
-      color-mix(in oklab, var(--border) 50%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in oklab, var(--border) 50%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: 56px 56px;
-}
-
-@utility hide-cursor {
-  cursor: none;
 }

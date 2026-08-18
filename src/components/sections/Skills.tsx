@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { skillGroups } from "@/lib/data";
+import { skillGroups } from "@/data";
 import { useI18n } from "@/lib/i18n";
 
 export function Skills() {

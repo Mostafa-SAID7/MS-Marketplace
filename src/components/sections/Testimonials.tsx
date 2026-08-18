@@ -1,7 +1,7 @@
 import { Quote } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { testimonials } from "@/lib/data";
+import { testimonials } from "@/data";
 import { useI18n } from "@/lib/i18n";
 
 function initials(name: string) {
