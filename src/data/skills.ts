@@ -6,11 +6,11 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   {
     title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "React Native"],
+    skills: ["React", "Next.js", "Angular", "TypeScript", "Tailwind CSS", "Framer Motion", "React Native", "RxJS", "Bootstrap"],
   },
   {
     title: "Backend",
-    skills: ["Node.js", "NestJS", "Go", "GraphQL", "PostgreSQL", "Redis", "Kafka"],
+    skills: ["Node.js", "C#", "ASP.NET Core", "GraphQL", "PostgreSQL", "MongoDB", "SQL Server", "Redis", "Kafka"],
   },
   {
     title: "Marketplace Systems",

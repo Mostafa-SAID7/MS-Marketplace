@@ -3,8 +3,6 @@ import {
   Outlet,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { Toaster } from "sonner";
@@ -13,7 +11,6 @@ import appCss from "../styles.css?url";
 
 import { ThemeProvider } from "@/lib/theme";
 import { I18nProvider } from "@/lib/i18n";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { useSmoothScroll } from "@/lib/smooth-scroll";
 
 function NotFoundComponent() {
@@ -109,25 +106,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en" className="dark">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -137,7 +119,6 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <I18nProvider>
-          <CustomCursor />
           <Toaster theme="dark" position="bottom-right" richColors />
           <Outlet />
         </I18nProvider>

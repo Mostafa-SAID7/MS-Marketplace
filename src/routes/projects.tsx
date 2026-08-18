@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { projects, projectFilters } from "@/data";
 import { Reveal } from "@/components/ui/Reveal";
-import { ArrowRight } from "lucide-react";
+import { ProjectCard } from "@/components/ui/ProjectCard";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -19,141 +23,153 @@ export const Route = createFileRoute("/projects")({
   component: ProjectsPage,
 });
 
+const ITEMS_PER_PAGE = 6;
+
 export function ProjectsPage() {
   const [filter, setFilter] = useState<(typeof projectFilters)[number]>("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const filtered =
-    filter === "All"
-      ? projects
-      : projects.filter((p) => p.category === filter);
+  // Filter and search projects
+  const filtered = useMemo(() => {
+    let result = filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
-  const projectCardClassName = "group glass relative flex h-full flex-col overflow-hidden rounded-2xl transition-all hover:-translate-y-1.5 hover:glow-gold";
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(
+        (p) =>
+          p.title.toLowerCase().includes(query) ||
+          p.description.toLowerCase().includes(query) ||
+          p.category.toLowerCase().includes(query) ||
+          p.tech.some((t) => t.toLowerCase().includes(query))
+      );
+    }
+
+    return result;
+  }, [filter, searchQuery]);
+
+  // Pagination
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const paginatedProjects = filtered.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const handleFilterChange = (newFilter: typeof filter) => {
+    setFilter(newFilter);
+    setCurrentPage(1); // Reset to first page
+    setSearchQuery(""); // Reset search
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1); // Reset to first page
+  };
 
   return (
-    <section className="py-20">
-      <div className="mx-auto max-w-6xl px-5">
-        {/* Header */}
-        <Reveal>
-          <div className="mb-16 text-center">
-            <h1 className="text-4xl font-bold md:text-5xl">All Projects</h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-              {filtered.length} {filter === "All" ? "projects" : filter + " projects"}
-            </p>
-          </div>
-        </Reveal>
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <section className="py-20">
+          <div className="mx-auto max-w-6xl px-5">
+            {/* Header */}
+            <Reveal>
+              <div className="mb-16 text-center">
+                <h1 className="text-4xl font-bold md:text-5xl">All Projects</h1>
+                <p className="mt-4 text-lg text-muted-foreground">
+                  {filtered.length} {filtered.length === 1 ? "project" : "projects"} found
+                </p>
+              </div>
+            </Reveal>
 
-        {/* Filters */}
-        <Reveal className="mb-12 flex flex-wrap justify-center gap-2.5">
-          {projectFilters.map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
-                filter === f
-                  ? "bg-gold text-gold-foreground"
-                  : "border border-border bg-secondary/40 text-muted-foreground hover:border-gold/50 hover:text-gold"
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </Reveal>
+            {/* Search Input */}
+            <Reveal className="mb-8">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Search projects by name, description, or technology..."
+                  value={searchQuery}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 rounded-lg bg-secondary/40 border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all"
+                />
+              </div>
+            </Reveal>
 
-        {/* Projects Grid */}
-        <motion.div layout className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-              >
-                <Link
-                  to={`/projects/${project.id}`}
-                  className={projectCardClassName}
+            {/* Filters */}
+            <Reveal className="mb-12 flex flex-wrap justify-center gap-2.5">
+              {projectFilters.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => handleFilterChange(f)}
+                  className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
+                    filter === f
+                      ? "bg-gold text-gold-foreground"
+                      : "border border-border bg-secondary/40 text-muted-foreground hover:border-gold/50 hover:text-gold"
+                  }`}
                 >
-                  {/* Image Header */}
-                  <div className="relative h-44 overflow-hidden bg-black/20">
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div
-                        className="h-full w-full"
-                        style={{
-                          background:
-                            project.gradient ||
-                            "linear-gradient(135deg, oklch(0.6 0.18 30), oklch(0.45 0.12 320))",
-                        }}
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-0" />
-                    <span className="absolute left-4 top-4 rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-                      {project.category}
-                    </span>
-                  </div>
+                  {f}
+                </button>
+              ))}
+            </Reveal>
 
-                  {/* Content */}
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-xl font-bold">{project.title}</h3>
-                    <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
-                      {project.description}
-                    </p>
+            {/* Projects Grid */}
+            {paginatedProjects.length > 0 ? (
+              <>
+                <motion.div layout className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-12">
+                  <AnimatePresence mode="popLayout">
+                    {paginatedProjects.map((project, index) => (
+                      <ProjectCard key={project.id} project={project} index={index} />
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
 
-                    {/* Type Badge */}
-                    <div className="my-4 flex flex-wrap gap-2">
-                      <span className="inline-block rounded-full bg-gold/10 px-2.5 py-1 text-xs font-semibold text-gold border border-gold/20">
-                        {project.type}
-                      </span>
-                      {project.client && (
-                        <span className="inline-block rounded-full bg-accent/10 px-2.5 py-1 text-xs font-semibold text-accent border border-accent/20">
-                          {project.client}
-                        </span>
-                      )}
-                    </div>
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-4">
+                    <button
+                      onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                      disabled={currentPage === 1}
+                      className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:enabled:border-gold/50 hover:enabled:text-gold"
+                    >
+                      <ChevronLeft className="size-4" />
+                      Previous
+                    </button>
 
-                    {/* Tech Stack */}
-                    <div className="mb-4 flex flex-wrap gap-2">
-                      {project.tech.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-md bg-background/50 px-2 py-1 text-xs text-muted-foreground"
+                    <div className="flex items-center gap-2">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                          key={page}
+                          onClick={() => setCurrentPage(page)}
+                          className={`size-10 rounded-lg font-semibold transition-all ${
+                            currentPage === page
+                              ? "bg-gold text-gold-foreground"
+                              : "border border-border bg-secondary/40 text-muted-foreground hover:border-gold/50 hover:text-gold"
+                          }`}
                         >
-                          {tech}
-                        </span>
+                          {page}
+                        </button>
                       ))}
-                      {project.tech.length > 3 && (
-                        <span className="rounded-md bg-background/50 px-2 py-1 text-xs text-gold">
-                          +{project.tech.length - 3}
-                        </span>
-                      )}
                     </div>
 
-                    {/* CTA */}
-                    <div className="mt-auto flex items-center gap-2 text-sm font-semibold text-gold transition-all group-hover:gap-3">
-                      View Details
-                      <ArrowRight className="size-4" />
-                    </div>
+                    <button
+                      onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+                      disabled={currentPage === totalPages}
+                      className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:enabled:border-gold/50 hover:enabled:text-gold"
+                    >
+                      Next
+                      <ChevronRight className="size-4" />
+                    </button>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Empty State */}
-        {filtered.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-lg text-muted-foreground">No projects found</p>
+                )}
+              </>
+            ) : (
+              <EmptyState message="No projects found matching your search" />
+            )}
           </div>
-        )}
-      </div>
-    </section>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 }

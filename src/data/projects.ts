@@ -1,4 +1,4 @@
-export type ProjectCategory = "Clothing" | "Beauty" | "Jewelry" | "Furniture" | "Dashboard" | "Web3" | "Sports" | "Tech Accessories";
+export type ProjectCategory = "Clothing" | "Beauty" | "Jewelry" | "Furniture" | "Dashboard" | "We3ds" | "Sports" | "Tech Accessories" | "Backend";
 
 export interface Project {
   id: string;
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     id: "shop-microservices",
     title: "Shop Microservices",
     description: "Advanced e-commerce microservices architecture with Web3 integration and scalable backend infrastructure.",
-    category: "Web3",
+    category: "We3ds",
     type: "Team",
     tech: ["Microservices", "Web3"],
     github: "https://github.com/Mostafa-SAID7/Shop-Microservices",
@@ -194,6 +194,47 @@ export const projects: Project[] = [
     image: "/projects/microservices/Inventory.jpg",
     gradient: "linear-gradient(135deg, oklch(0.6 0.16 230), oklch(0.5 0.15 190))",
   },
+  {
+    id: "market-api",
+    title: "Market API",
+    description: "RESTful API for marketplace operations with MongoDB backend, comprehensive Swagger documentation, and real-time data management.",
+    category: "Backend",
+    client: "Erra Soft",
+    type: "Freelance",
+    tech: ["ASP.NET Core", "MongoDB", "Swagger", "RESTful API"],
+    database: "MongoDB",
+    status: "Completed",
+    live: "http://market-api.runasp.net/index.html",
+    image: "/api/market-api.png",
+    gradient: "linear-gradient(135deg, oklch(0.6 0.18 30), oklch(0.45 0.12 320))",
+  },
+  {
+    id: "e-commerce-api",
+    title: "E-Commerce API",
+    description: "Full-featured e-commerce backend API with SQL Server database, Swagger documentation, and comprehensive endpoint coverage.",
+    category: "Backend",
+    client: "We3ds",
+    type: "Freelance",
+    tech: ["ASP.NET Core", "SQL Server", "Swagger", "RESTful API"],
+    database: "SQL Server",
+    status: "Completed",
+    live: "http://e-commerce-api73.runasp.net/",
+    image: "/api/e-commerce-api.png",
+    gradient: "linear-gradient(135deg, oklch(0.6 0.16 230), oklch(0.5 0.15 190))",
+  },
+  {
+    id: "marketing-mvc",
+    title: "Marketing MVC",
+    description: "Full-stack marketing application built with ASP.NET MVC and SQL Server, featuring modern UI and comprehensive business logic.",
+    category: "Backend",
+    client: "Erra Soft",
+    type: "Freelance",
+    tech: ["ASP.NET MVC", "SQL Server", "C#"],
+    database: "SQL Server",
+    status: "Completed",
+    image: "/api/Marketing-Mvc.jpg",
+    gradient: "linear-gradient(135deg, oklch(0.58 0.18 300), oklch(0.5 0.15 270))",
+  },
 ];
 
 export const projectFilters: (ProjectCategory | "All")[] = [
@@ -203,7 +244,8 @@ export const projectFilters: (ProjectCategory | "All")[] = [
   "Jewelry",
   "Furniture",
   "Dashboard",
-  "Web3",
+  "We3ds",
   "Sports",
   "Tech Accessories",
+  "Backend",
 ];

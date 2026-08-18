@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LangToggle } from "@/components/ui/LangToggle";
 
 const links = [
-  { id: "about", key: "nav.about" },
-  { id: "skills", key: "nav.skills" },
-  { id: "projects", key: "nav.projects" },
-  { id: "experience", key: "nav.experience" },
-  { id: "contact", key: "nav.contact" },
+  { id: "about", key: "nav.about", path: "/#about" },
+  { id: "skills", key: "nav.skills", path: "/#skills" },
+  { id: "projects", key: "nav.projects", path: "/projects" },
+  { id: "experience", key: "nav.experience", path: "/#experience" },
+  { id: "contact", key: "nav.contact", path: "/#contact" },
 ];
 
 export function Navbar() {
   const { tr } = useI18n();
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -30,6 +32,18 @@ export function Navbar() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleNavClick = (path: string) => {
+    setOpen(false);
+    
+    // If path starts with /, it's a route, otherwise it's a scroll target
+    if (path.startsWith("/#")) {
+      // Hash link - scroll on current page
+      const id = path.split("#")[1];
+      scrollTo(id);
+    }
+    // Otherwise, TanStack Router Link will handle the navigation
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -37,23 +51,24 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-lg font-extrabold tracking-tight"
+        <Link
+          to="/"
+          className="text-lg font-extrabold tracking-tight hover:opacity-80 transition-opacity"
         >
-          <span className="text-gradient-gold">MK</span>
-          <span className="text-foreground">.dev</span>
-        </button>
+          <span className="text-gradient-gold">MS</span>
+          <span className="text-foreground">.DEV</span>
+        </Link>
 
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <button
+            <Link
               key={l.id}
-              onClick={() => scrollTo(l.id)}
+              to={l.path}
+              onClick={() => handleNavClick(l.path)}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-gold"
             >
               {tr(l.key)}
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -80,13 +95,14 @@ export function Navbar() {
           >
             <div className="mx-auto mt-3 flex max-w-6xl flex-col gap-1 px-5 pb-3">
               {links.map((l) => (
-                <button
+                <Link
                   key={l.id}
-                  onClick={() => scrollTo(l.id)}
+                  to={l.path}
+                  onClick={() => handleNavClick(l.path)}
                   className="rounded-lg px-3 py-3 text-start text-base font-medium text-foreground transition-colors hover:bg-secondary hover:text-gold"
                 >
                   {tr(l.key)}
-                </button>
+                </Link>
               ))}
             </div>
           </motion.div>
